@@ -22,7 +22,7 @@ Tasks -
 
     <ol>
         {% for task in tasks %}
-            <li>{{task.title}}</li>
+            <li>{{task.title}} | <a href="{% url "update_task" task.id %}">Update</a></li>
         {% endfor %}
     </ol>
 
