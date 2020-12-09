@@ -17,12 +17,20 @@ Tasks -
         <!-- {{task_form}} to display all -->
         {{task_form.title}} <!-- to display particular field-->
 
-        <button type="submit">SUBMIT</button>
+        <button type="submit">ADD</button>
     </form>
 
     <ol>
         {% for task in tasks %}
-            <li>{{task.title}} | <a href="{% url "update_task" task.id %}">Update</a></li>
+            <li>
+
+                {% if task.completed == True %}
+                    <strike>{{task.title}} </strike>
+                {% else %}
+                    {{task.title}}
+                {% endif %}
+
+                | <a href="{% url "update_task" task.id %}">Update</a></li>
         {% endfor %}
     </ol>
 
