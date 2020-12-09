@@ -19,4 +19,12 @@ Tasks -
 
         <button type="submit">SUBMIT</button>
     </form>
+
+    <ol>
+        {% for task in tasks %}
+            <li>{{task.title}}</li>
+        {% endfor %}
+    </ol>
+
+
 {% endblock content %}

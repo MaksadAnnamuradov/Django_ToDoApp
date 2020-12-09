@@ -1,7 +1,7 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from .forms import TaskForm
-from django.shortcuts import redirect
-# Create your views here.
+from .models import Task
+
 
 
 def index(request):
@@ -12,6 +12,7 @@ def index(request):
         form = TaskForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("index.html")
-    return render(request, "index.html", {"task_form": form})
+            return redirect("index")
+    tasks = Task.objects.all()
+    return render(request, "index.html", {"task_form": form, "tasks": tasks})
 
