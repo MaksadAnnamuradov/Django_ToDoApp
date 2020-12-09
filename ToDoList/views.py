@@ -31,3 +31,9 @@ def update_task(request, pk):
 
     return render(request, "update_task.html", {"task_edit_form": form})
 
+
+def delete_task(request, pk):
+    task = Task.objects.get(id=pk)
+    task.delete()
+    return redirect("index")
+
