@@ -12,14 +12,24 @@ Tasks -
         program performing an unwanted action for a user on your site.-->
 
     <form method="post">
-    {% csrf_token %}
+        {% csrf_token %}
 
-        <!-- {{task_form}} to display all -->
-        {{task_form.title}} <!-- to display particular field-->
-        {{task_form.content}}
-        {{task_form.due_date}}
+        <div class="inputContainer">
+            <input type="text" id="title" class="taskTitle" placeholder="What do you need to do?" name="title" required>
+            <label for="title">Task Title</label>
+        </div>
 
-        <button type="submit">ADD</button>
+        <div class="inputContainer">
+            <input type="text" id="content" class="taskContent" placeholder="What is it?" name="content" required>
+            <label for="title">Task Description</label>
+        </div>
+
+        <div class="inputContainer">
+            <input type="date" id="due_date" class="task_due_date" name="due_date">
+            <label for="due_date">Due Date</label>
+        </div>
+
+        <button class="taskAdd" name="taskAdd" type="submit"><i class="fa fa-plus icon"></i>Add task</button>
     </form>
 
     <ol>
