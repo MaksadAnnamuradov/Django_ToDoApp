@@ -6,15 +6,19 @@ from .models import Task
 
 def index(request):
     # return HttpResponse("Hello World!!")
-    form = TaskForm()
+    tasks = Task.objects.all()
+
     if request.method == "POST":
         #Get the posted form
-        form = TaskForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("index")
-    tasks = Task.objects.all()
-    return render(request, "index.html", {"task_form": form, "tasks": tasks})
+
+        new_title = request.POST["title"]
+        new_due_date = request.POST["due_date"]
+        new_content = request.POST["content"]
+
+        new_Task = Task(title = new_title, content = new_content, due_date= new_due_date)
+        new_Task.save()
+        return redirect("/")
+    return render(request, "index.html", {"tasks": tasks})
 
 
 

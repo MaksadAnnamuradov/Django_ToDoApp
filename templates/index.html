@@ -16,6 +16,8 @@ Tasks -
 
         <!-- {{task_form}} to display all -->
         {{task_form.title}} <!-- to display particular field-->
+        {{task_form.content}}
+        {{task_form.due_date}}
 
         <button type="submit">ADD</button>
     </form>
@@ -28,6 +30,9 @@ Tasks -
                     <strike>{{task.title}} </strike>
                 {% else %}
                     {{task.title}}
+                    {{task.content}}
+                    {{task.due_date}}
+                    {{task.created}}
                 {% endif %}
 
                 | <a href="{% url "update_task" task.id %}">Update</a> | <a href="{% url "delete_task" task.id %}">Delete</a>

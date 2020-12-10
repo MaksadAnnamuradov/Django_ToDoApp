@@ -10,6 +10,10 @@ class Task(models.Model):
     created = models.DateField(default=timezone.now().strftime("%Y-%m-%d"))
     due_date = models.DateField(default=timezone.now().strftime("%Y-%m-%d"))
 
+    class Meta:
+        ordering = ["-created"]
+
+
     def __str__(self):
         return self.title
 
