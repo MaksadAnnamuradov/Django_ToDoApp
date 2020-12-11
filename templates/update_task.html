@@ -9,9 +9,29 @@ Update Task -
 <form method="post">
     {% csrf_token %}
 
-    {{task_edit_form}}
+    <div class="inputContainer">
+        <input type="text" id="title" class="taskTitle"  name="title" value="{{task.title}}" required>
+        <label for="title">Task Title</label>
+    </div>
+
+    <div class="inputContainer">
+        <input type="text" id="content" class="taskContent"  name="content" value="{{task.content}}" required>
+        <label for="title">Task Description</label>
+    </div>
+
+    <div class="inputContainer">
+        <input type="date" id="due_date" class="task_due_date" name="due_date" placeholder={{task.due_date}} required>
+        <label for="due_date">Due Date</label>
+    </div>
+
+    <div>
+        <input type="checkbox" id="completed" name="completed">
+        <label for="completed">Completed</label>
+    </div>
+
+    <button class="taskUpdate" name="task_update" type="submit">Update</button>
     
-    <button type="submit">Update</button>
 </form>
+
 
 {% endblock content %}
