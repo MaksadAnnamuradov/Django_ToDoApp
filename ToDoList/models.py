@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from datetime import datetime
 
 
 
@@ -18,9 +19,11 @@ class Task(models.Model):
     title=models.CharField(max_length=350)
     completed=models.BooleanField(default=False)
     content = models.TextField(blank=True)
-    created = models.DateField(default=timezone.now().strftime("%Y-%m-%d"))
-    due_date = models.DateField(default=timezone.now().strftime("%Y-%m-%d"))
+    created = models.DateTimeField(default=timezone.now())
+    #due_date = models.DateField(default=timezone.now().strftime("%Y-%m-%d"))
+    due_date = models.DateTimeField(default=timezone.now(), blank=True)
     category = models.ForeignKey(Category, default="general", on_delete= models.CASCADE) # a foreignkey
+
 
     class Meta:
         ordering = ["-created"]
