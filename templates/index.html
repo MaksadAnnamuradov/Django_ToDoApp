@@ -29,6 +29,18 @@ Tasks -
             <label for="due_date">Due Date</label>
         </div>
 
+
+        <div class="inputContainer half last">
+            <i class="fa fa-caret-down selectArrow"></i>
+            <select id="category" class="taskCategory" name="category">
+            <option class="disabled" value="">Choose a category</option>
+            {% for category in categories %}
+                <option class="" value="{{ category.name }}" name="{{ category.name }}">{{ category.name }}</option>
+            {% endfor %}
+            </select>
+            <label for="category">Category</label>
+        </div>
+
         <button class="taskAdd" name="taskAdd" type="submit"><i class="fa fa-plus icon"></i>Add task</button>
         <button class="taskDelete" name="taskDelete" formnovalidate="" type="submit" onclick="$('input#sublist').click();"><i class="fa fa-trash-o icon"></i>Delete Tasks</button>
     </form>
@@ -44,6 +56,7 @@ Tasks -
                     {{task.content}}
                     {{task.due_date}}
                     {{task.created}}
+                    {{task.category}}
                 {% endif %}
 
                 | <button><i class="fa fa-edit icon"></i><a href="{% url "update_task" task.id %}">Edit</a></button> |
