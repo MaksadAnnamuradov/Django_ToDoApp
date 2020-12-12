@@ -24,6 +24,18 @@ Tasks -
             <label for="title">Task Description</label>
         </div>
 
+
+        <div>
+            <i class="fa fa-caret-down selectArrow"></i>
+            <select id="priority" class="taskPriority" name="priority" required>
+            <option class="disabled" value="">Choose a priority</option>
+            {% for i in n %}
+                <option class="" value="{{i}}">{{ i }}</option>
+            {% endfor %}
+            </select>
+            <label for="category">Priority</label>
+        </div>
+
         <div class="inputContainer">
             <input type="datetime-local" value="2020-12-12T19:30" min="2020-12-12T00:00" id="due_date" class="task_due_date" name="due_date">
             <label for="due_date">Due Date</label>
@@ -56,6 +68,7 @@ Tasks -
                     {{task.content}}
                     {{task.due_date}}
                     {{task.category}}
+                    {{task.priority}}
                 {% endif %}
 
                 | <button><i class="fa fa-edit icon"></i><a href="{% url "update_task" task.id %}">Edit</a></button> |
