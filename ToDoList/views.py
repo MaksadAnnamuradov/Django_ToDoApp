@@ -16,12 +16,13 @@ def index(request):
         new_title = request.POST["title"]
         new_due_date = request.POST["due_date"]
         new_content = request.POST["content"]
+        new_priority = request.POST["priority"]
         new_category = request.POST["category"] #category
 
-        new_Task = Task(title = new_title, content = new_content, due_date= new_due_date, category=Category.objects.get(name=new_category))
+        new_Task = Task(title = new_title, content = new_content, priority = new_priority, due_date= new_due_date, category=Category.objects.get(name=new_category))
         new_Task.save()
         return redirect("/")
-    return render(request, "index.html", {"tasks": tasks, "categories":categories})
+    return render(request, "index.html", {"tasks": tasks, "categories":categories, 'n' : range(1, 6, 1)})
 
 
 
