@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 <style>
 
 	body{
@@ -7,31 +8,40 @@
 	}
 
 	input{
-		width: 100%;
+		width: 250px;
 		padding: 12px 20px;
 		margin: 8px 0;
 		box-sizing: border-box;
 	}
 
 	input::placeholder {
-	  color: #d3d3d3;
+	  color: #afa9a9;
 	}
 
 	.submit{
-		background-color: #6BA3E8;
+		background-color: #5f90cc;
 	}
 
 	.center-column{
+		width:500px;
+		margin: 20px auto;
+		padding:20px;
+		background-color: rgb(233, 182, 182);
+		border-radius: 3px;
+		box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
+	}
+
+    .todo-list{
 		width:800px;
 		margin: 20px auto;
 		padding:20px;
-		background-color: #fff;
+		background-color: rgb(127, 209, 164);
 		border-radius: 3px;
 		box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
 	}
 
 	.item-row{
-		background-color: #906abd;
+		background-color: #916dbd;
 		margin: 10px;
 		padding: 20px;
 		border-radius: 3px;
@@ -40,27 +50,30 @@
 		box-shadow: 0px -1px 10px -4px rgba(0,0,0,0.75);
 	}
 
-	.btn-danger{
+	.btn-remove{
+		background-color: red;
+		border-color: red;
+    }
+
+    .btn-edit{
 		background-color: #ffae19;
 		border-color: #e59400;
     }
 
     .taskItem {
-    border-top: 1px solid #e5e5e5;
+    border-top: 1px solid #5c5858;
     padding: 15px 0;
-    color: #777;
+    color: rgb(17, 19, 18);
     font-weight: 600;
-    font-size: 14px;
+    font-size: 15px;
     letter-spacing: 0.5px;
     }
+
     .taskList {
     list-style: none;
     padding: 0 20px;
     }
 
-    .taskList .taskItem:nth-child(even) {
-    background: #fcfcfc;
-    }
 
     .icon {
     position: absolute;
@@ -68,6 +81,7 @@
     left: 10px;
     font-size: 20px;
 }
+
 .taskAdd {
     background: #444;
     padding-left: 31px;
@@ -99,6 +113,53 @@ button {
     transition: all 0.3s;
     padding-left: 30px;
     padding-right: 15px;
+}
+
+
+.taskList .taskDate {
+    color: #95a5a6;
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: block;
+    margin-left: 41px;
+}
+.fa-calendar {
+    margin-right: 10px;
+    font-size: 16px;
+}
+[class*='category-'] {
+    display: inline-block;
+    font-size: 10px;
+    background: #444;
+    vertical-align: middle;
+    color: #fff;
+    padding: 10px;
+    width: 75px;
+    text-align: center;
+    border-radius: 2px;
+    float: right;
+    font-weight: normal;
+    text-transform: uppercase;
+    margin-right: 20px;
+}
+.category- {
+    background: transparent;
+}
+.category-Personal {
+    background: #2980b9;
+}
+.category-Work {
+    background: #8e44ad;
+}
+.category-School {
+    background: #f39c12;
+}
+.category-Cleaning {
+    background: #16a085;
+}
+.category-general {
+    background: #d35400;
 }
 
 
@@ -163,6 +224,8 @@ button {
         <button class="taskAdd" name="taskAdd" type="submit"><i class="fa fa-plus icon"></i>Add task</button>
         <button class="taskDelete" name="taskDelete" formnovalidate="" type="submit" onclick="$('input#sublist').click();"><i class="fa fa-trash-o icon"></i>Delete Tasks</button>
     </form>
+</div>
+
 <div class="todo-list">
     <ol class="taskList">
         {% for task in tasks %}
@@ -171,17 +234,18 @@ button {
                 {% if task.completed == True %}
                     <strike>{{task.title}} </strike>
                 {% else %}
-                    {{task.title}}
+                    <a href="{% url "update_task" task.id %}">{{task.title}}</a>
                     {{task.content}}
                     {{task.due_date}}
                     {{task.category}}
                     {{task.priority}}
                 {% endif %}
 
-                | <button><i class="fa fa-edit icon"></i><a href="{% url "update_task" task.id %}">Edit</a></button> |
-                <button><i class="fa fa-trash-o icon"></i><a href="{% url "delete_task" task.id %}">Delete</a></button>
+                <button class="btn-remove"><i class="fa fa-trash-o icon"></i><a href="{% url "delete_task" task.id %}">Delete</a></button>
 
+                <span class="category-{{ task.category }}">{{ task.category }}</span>
+                <strong class="taskDate"><i class="fa fa-calendar"></i>{{ task.created }} - {{ task.due_date }}</strong>
+            </li>
         {% endfor %}
     </ol>
-</div>
 </div>
