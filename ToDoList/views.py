@@ -12,16 +12,24 @@ def index(request):
 
     if request.method == "POST":
         #Get the posted form
+        if "taskAdd" in request.POST:
+            new_title = request.POST["title"]
+            new_due_date = request.POST["due_date"]
+            new_content = request.POST["content"]
+            new_priority = request.POST["priority"]
+            new_category = request.POST["category"] #category
 
-        new_title = request.POST["title"]
-        new_due_date = request.POST["due_date"]
-        new_content = request.POST["content"]
-        new_priority = request.POST["priority"]
-        new_category = request.POST["category"] #category
+            new_Task = Task(title = new_title, content = new_content, priority = new_priority, due_date= new_due_date, category=Category.objects.get(name=new_category))
+            new_Task.save()
+            return redirect("/") #reloading the page
 
-        new_Task = Task(title = new_title, content = new_content, priority = new_priority, due_date= new_due_date, category=Category.objects.get(name=new_category))
-        new_Task.save()
-        return redirect("/")
+        # if "taskDelete" in request.POST: #checking if there is a request to delete a todo
+        #     checkedlist = request.POST["checkedbox"] #checked todos to be deleted
+        #     for todo_id in checkedlist:
+        #         task = Task.objects.get(id=int(todo_id)) #getting todo id
+        #         task.delete() #deleting todo
+        #     return redirect("/")
+
     return render(request, "index.html", {"tasks": tasks, "categories":categories, 'n' : range(1, 6, 1)})
 
 
@@ -43,5 +51,6 @@ def update_task(request, pk):
 def delete_task(request, pk):
     task = Task.objects.get(id=pk)
     task.delete()
-    return redirect("index")
+    return redirect("/")
+
 

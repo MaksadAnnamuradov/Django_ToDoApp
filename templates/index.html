@@ -1,6 +1,8 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style>
 
 	body{
@@ -8,7 +10,7 @@
 	}
 
 	input{
-		width: 250px;
+		width: 275px;
 		padding: 12px 20px;
 		margin: 8px 0;
 		box-sizing: border-box;
@@ -50,15 +52,6 @@
 		box-shadow: 0px -1px 10px -4px rgba(0,0,0,0.75);
 	}
 
-	.btn-remove{
-		background-color: red;
-		border-color: red;
-    }
-
-    .btn-edit{
-		background-color: #ffae19;
-		border-color: #e59400;
-    }
 
     .taskItem {
     border-top: 1px solid #5c5858;
@@ -76,26 +69,63 @@
 
 
     .icon {
+
+        font-size: 20px;
+    }
+
+.taskAdd {
+    background: rgb(30, 32, 29);
+    padding-left: 31px;
+
+    justify-content: center;
+    align-items: center;
+    border: 3px solid green;
+
+    height:50px;
+    width:150px;
+    margin-top: -20px;
+    margin: -0px -50px;
+
+    top:40%;
+    left:45%;
+}
+
+.taskAdd:hover {
+    background: #27b43a;
+}
+
+
+.taskAdd .icon {
     position: absolute;
     top: 30%;
     left: 10px;
     font-size: 20px;
 }
 
-.taskAdd {
-    background: #444;
-    padding-left: 31px;
+.btn-danger{
+
+    font-size: 10px;
+    vertical-align: middle;
+
+    color: rgb(189, 45, 45);
+    padding: 5px;
+    width: 75px;
+    text-align: center;
+    border-radius: 2px;
+    float: right;
+    font-weight: normal;
+
+
+    left:500px;
+    vertical-align: middle;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
 }
-.taskAdd:hover {
-    background: #303030;
+
+.btn-danger:hover{
+    background: #2980b9;
 }
-.taskDelete {
-    background: #e74c3c;
-    padding-left: 30px;
-}
-.taskDelete:hover {
-    background: #c0392b;
-}
+
 
 button {
     font-family: 'Open Sans', sans-serif;
@@ -117,8 +147,8 @@ button {
 
 
 .taskList .taskDate {
-    color: #95a5a6;
-    font-size: 10px;
+    color: #1ca0a7;
+    font-size: 12px;
     font-weight: bold;
     text-transform: uppercase;
     display: block;
@@ -128,6 +158,7 @@ button {
     margin-right: 10px;
     font-size: 16px;
 }
+
 [class*='category-'] {
     display: inline-block;
     font-size: 10px;
@@ -141,8 +172,9 @@ button {
     float: right;
     font-weight: normal;
     text-transform: uppercase;
-    margin-right: 20px;
+    margin-right: 50px;
 }
+
 .category- {
     background: transparent;
 }
@@ -158,11 +190,37 @@ button {
 .category-Cleaning {
     background: #16a085;
 }
-.category-general {
+.category-General {
     background: #d35400;
 }
 
 
+h1 {
+    font-family: 'Rokkitt', sans-serif;
+    color: #666;
+    text-align: center;
+    font-weight: 400;
+    margin: 0;
+}
+.tagline {
+    margin-top: -10px;
+    text-align: center;
+    padding: 5px 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #777;
+}
+
+
+.center-column label {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    font-weight: 600;
+
+    color: rgb(8, 8, 8);
+
+}
 
 </style>
 
@@ -174,6 +232,9 @@ button {
 
 
 <div class="center-column">
+    <h1>ToDo App</h1>
+    <p class="tagline">a Django todo app</p>
+
     <form method="post">
         {% csrf_token %}
 
@@ -222,11 +283,13 @@ button {
         </div>
 
         <button class="taskAdd" name="taskAdd" type="submit"><i class="fa fa-plus icon"></i>Add task</button>
-        <button class="taskDelete" name="taskDelete" formnovalidate="" type="submit" onclick="$('input#sublist').click();"><i class="fa fa-trash-o icon"></i>Delete Tasks</button>
+
     </form>
 </div>
 
 <div class="todo-list">
+    <div>
+
     <ol class="taskList">
         {% for task in tasks %}
             <li class="taskItem">
@@ -234,17 +297,19 @@ button {
                 {% if task.completed == True %}
                     <strike>{{task.title}} </strike>
                 {% else %}
-                    <a href="{% url "update_task" task.id %}">{{task.title}}</a>
-                    {{task.content}}
+
+                    <label for="{{ task.id }}"><span class="complete-" ><a href="{% url "update_task" task.id %}">{{task.title}}</a></span></label>
+
+                    <!-- {{task.content}}
                     {{task.due_date}}
                     {{task.category}}
-                    {{task.priority}}
+                    {{task.priority}} -->
                 {% endif %}
 
-                <button class="btn-remove"><i class="fa fa-trash-o icon"></i><a href="{% url "delete_task" task.id %}">Delete</a></button>
-
+                <!-- <button class="btn-remove"><i class="fa fa-trash-o icon"></i><a href="{% url "delete_task" task.id %}">Delete</a></button> -->
+                <a href="{% url "delete_task" task.id %}" class="btn btn-danger btn-lg active " role="button" aria-pressed="true"> <i class="fa fa-trash-o icon"></i></a>
                 <span class="category-{{ task.category }}">{{ task.category }}</span>
-                <strong class="taskDate"><i class="fa fa-calendar"></i>{{ task.created }} - {{ task.due_date }}</strong>
+                <strong class="taskDate"><i class="fa fa-calendar"></i>Due: {{ task.due_date }} | Priority: {{task.priority}}</strong>
             </li>
         {% endfor %}
     </ol>
