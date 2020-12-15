@@ -224,11 +224,16 @@ h1 {
 
 </style>
 
-
+<script>
+    // Material Select Initialization
+    $(document).ready(function() {
+    $('.mdb-select').materialSelect();
+    });
+</script>
 
     {% load static %}
 
-    <link rel="stylesheet" type="text/css" href="{% static 'ToDoLIst/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'ToDoList/style.css' %}">
 
 
 <div class="center-column">
@@ -265,7 +270,7 @@ h1 {
 
         <div class="item-row">
             <label for="due_date">Due Date</label>
-            <input type="datetime-local" value="2020-12-12T19:30" min="2020-12-12T00:00" id="due_date" class="task_due_date" name="due_date">
+            <input type="datetime-local" value="2020-12-12T19:30" min="2020-12-12T00:00" id="due_date"  class="task_due_date" name="due_date">
 
         </div>
 
@@ -273,7 +278,9 @@ h1 {
         <div class="item-row">
             <label for="category">Category</label>
             <i class="fa fa-caret-down selectArrow"></i>
-            <select id="category" class="taskCategory" name="category" required>
+
+            <select id="category"  name="category" class="mdb-select md-form" required>
+
             <option class="disabled" value="">Choose a category</option>
             {% for category in categories %}
                 <option class="" value="{{ category.name }}" name="{{ category.name }}">{{ category.name }}</option>
