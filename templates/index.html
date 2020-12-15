@@ -222,14 +222,25 @@ h1 {
 
 }
 
+.taskList a{
+    color: black
+}
+
 </style>
 
-<script>
-    // Material Select Initialization
-    $(document).ready(function() {
-    $('.mdb-select').materialSelect();
-    });
-</script>
+ <!-- <script>
+            window.addEventListener('load', function(){
+                let today = new Date().toISOString().substr(0, 16);
+                document.querySelector("#today").value = today;})
+
+         </script>
+
+        <font color="blue">
+            Today's date is :
+            Set to today (JavaScript):
+                <input id="today" type="datetime-local" value="">
+        </font>-->
+
 
     {% load static %}
 
@@ -270,7 +281,7 @@ h1 {
 
         <div class="item-row">
             <label for="due_date">Due Date</label>
-            <input type="datetime-local" value="2020-12-12T19:30" min="2020-12-12T00:00" id="due_date"  class="task_due_date" name="due_date">
+            <input type="datetime-local"  min="2020-12-12T00:00" id="due_date"  class="task_due_date" name="due_date">
 
         </div>
 
@@ -302,7 +313,10 @@ h1 {
             <li class="taskItem">
 
                 {% if task.completed == True %}
-                    <strike>{{task.title}} </strike>
+                    <strike style='color:black'>
+                        <span></span><a style='color:red' href="{% url "update_task" task.id %}">{{task.title}}</a>
+                    </strike>
+
                 {% else %}
 
                     <label for="{{ task.id }}"><span class="complete-" ><a href="{% url "update_task" task.id %}">{{task.title}}</a></span></label>

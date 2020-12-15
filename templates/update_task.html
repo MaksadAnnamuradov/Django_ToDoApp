@@ -10,14 +10,24 @@ Update Task -
 <br/><br/>
 
 
+
 <div class = "form-group">
 
     <form method="post">
         {% csrf_token %}
-<table>
-        {{task_edit_form.as_table}}
-</table>
+
+        <!-- <script>
+            window.addEventListener('load', function(){
+            var a = $("#today").val();
+            document.querySelector("#today").value = a;
+        })
+        </script> -->
+
+        <table>
+            {{task_edit_form.as_table}}
+        </table>
 <br/><br/>
+
         <div>
             <button type="submit" class="btn btn-primary">Update</button>
         </div>
