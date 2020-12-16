@@ -48,10 +48,12 @@
     .taskItem {
         border-top: 1px solid #5c5858;
         padding: 15px 0;
+        left: 30px;
         color: rgb(17, 19, 18);
         font-weight: 600;
         font-size: 15px;
         letter-spacing: 0.5px;
+        position: relative;
     }
 
     .taskList {
@@ -202,6 +204,32 @@
         transition: all 0.3s;
     }
 
+    .btn-primary{
+
+        font-size: 10px;
+        vertical-align: middle;
+
+        position: relative;
+
+        color: rgb(189, 45, 45);
+        padding: 5px;
+        width: 30px;
+        text-align: center;
+        border-radius: 2px;
+
+        right: 18%;
+        font-weight: normal;
+
+
+
+        vertical-align: middle;
+        -webkit-transition: all 0.3s;
+        transition: all 0.3s;
+    }
+
+    .btn-primary:hover{
+        background-color: rgb(189, 45, 45);
+    }
 
 
 
@@ -378,18 +406,38 @@
 
     }
 
+    .taskCheckbox {
+        margin-right: 1em;
+    }
+    .complete-true {
+        text-decoration:  line-through;
+        color: #bebebe;
+    }
+
 
 </style>
 
+
+<script type="text/javascript">
+ document.addEventListener("DOMContentLoaded", function(event) {
+            var scrollpos = localStorage.getItem('scrollpos');
+            if (scrollpos) window.scrollTo(0, scrollpos);
+        });
+
+        window.onbeforeunload = function(e) {
+            localStorage.setItem('scrollpos', window.scrollY);
+        };
+
+
+
+</script>
 
 <title>
 
     ToDoApp
 </title>
 
-    {% load static %}
-
-    <link rel="stylesheet" type="text/css" href="{% static 'ToDoList/style.css' %}">
+<body>
 
 
 <div class="center-column">
@@ -397,7 +445,7 @@
     <h1 >ToDo App</h1>
     <p class="tagline" >in Python Django</p>
 
-    <form method="post">
+    <form action="/"  method="post">
         {% csrf_token %}
 
         <div class="item-row">
@@ -448,22 +496,25 @@
 
         <button class="taskAdd" name="taskAdd" type="submit"><i class="fa fa-plus icon fa-2x"></i>Add task</button>
 
-
+    </form>
 </div>
 
 
 <div class="todo-list">
     <div>
         <div>
+        <form action="sort_task" method="POST">
+            {%csrf_token%}
 
             <button class="sort_due_date" name="due_date" type="submit"><i class="fa fa-clock-o fa-2x"></i></button>
             <button class="sort_priority" name="priority" type="submit"><i class="fa fa-exclamation fa-2x"></i></button>
             <button class="delete_completed" name="delete_completed" type="submit"><i class="fa fa-check-square-o fa-2x"></i> <i class="fa fa-trash-o icon fa-2x"></i></button>
-
+        </form>
         </div>
+
         <br>
         <br>
- </form>
+
 
     <ol class="taskList">
         {% for task in tasks %}
@@ -476,7 +527,8 @@
 
                 {% else %}
 
-                    <label for="{{ task.id }}"><span class="complete-" ><a href="{% url "update_task" task.id %}">{{task.title}}</a></span></label>
+
+                    <label for="{{ task.id }}"><span ><a href="{% url "update_task" task.id %}">{{task.title}}</a></span></label>
 
                     <!-- {{task.content}}
                     {{task.due_date}}
@@ -485,6 +537,7 @@
                 {% endif %}
 
                 <!-- <button class="btn-remove"><i class="fa fa-trash-o icon"></i><a href="{% url "delete_task" task.id %}">Delete</a></button> -->
+                <a href="{% url "complete_task" task.id %}" class="btn btn-primary complete " role="button" aria-pressed="true"> <i class="fa fa-check-square-o"></i></a>
                 <a href="{% url "delete_task" task.id %}" class="btn btn-danger btn-lg active " role="button" aria-pressed="true"> <i class="fa fa-trash-o icon"></i></a>
                 <span class="category-{{ task.category }}">{{ task.category }}</span>
                 <strong class="taskDate"><i class="fa fa-calendar"></i>Due: {{ task.due_date }} | Priority: {{task.priority}}</strong>
@@ -493,3 +546,5 @@
     </ol>
 </div>
 </div>
+
+</body>
