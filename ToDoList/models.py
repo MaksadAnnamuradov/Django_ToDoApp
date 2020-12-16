@@ -7,6 +7,10 @@ from datetime import datetime
 class Category(models.Model): # The Category table name that inherits models.Model
     name = models.CharField(max_length=100, primary_key=True) #Like a varchar
 
+    class Meta:
+        verbose_name = ("Category")
+        verbose_name_plural = ("Categories")
+
     def __str__(self):
         return self.name #name to be shown when called
 

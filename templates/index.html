@@ -3,25 +3,17 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <style>
 
 	body{
 		background-color: #638CB8;
 	}
 
-	input{
-		width: 275px;
-		padding: 12px 20px;
-		margin: 8px 0;
-		box-sizing: border-box;
-	}
+
 
 	input::placeholder {
 	  color: #afa9a9;
-	}
-
-	.submit{
-		background-color: #5f90cc;
 	}
 
 	.center-column{
@@ -54,17 +46,17 @@
 
 
     .taskItem {
-    border-top: 1px solid #5c5858;
-    padding: 15px 0;
-    color: rgb(17, 19, 18);
-    font-weight: 600;
-    font-size: 15px;
-    letter-spacing: 0.5px;
+        border-top: 1px solid #5c5858;
+        padding: 15px 0;
+        color: rgb(17, 19, 18);
+        font-weight: 600;
+        font-size: 15px;
+        letter-spacing: 0.5px;
     }
 
     .taskList {
-    list-style: none;
-    padding: 0 20px;
+        list-style: none;
+        padding: 0 20px;
     }
 
 
@@ -73,173 +65,229 @@
         font-size: 20px;
     }
 
-.taskAdd {
-    background: rgb(30, 32, 29);
-    padding-left: 31px;
+    .taskAdd {
+        background: rgb(30, 32, 29);
+        padding-left: 31px;
 
-    justify-content: center;
-    align-items: center;
-    border: 3px solid green;
+        justify-content: center;
+        align-items: center;
+        border: 3px solid green;
 
-    height:50px;
-    width:150px;
-    margin-top: -20px;
-    margin: -0px -50px;
+        height:50px;
+        width:150px;
+        margin-top: -20px;
+        margin: -0px -50px;
 
-    top:40%;
-    left:45%;
-}
+        top:40%;
+        left:45%;
+    }
 
-.taskAdd:hover {
-    background: #27b43a;
-}
-
-
-.taskAdd .icon {
-    position: absolute;
-    top: 30%;
-    left: 10px;
-    font-size: 20px;
-}
-
-.btn-danger{
-
-    font-size: 10px;
-    vertical-align: middle;
-
-    color: rgb(189, 45, 45);
-    padding: 5px;
-    width: 75px;
-    text-align: center;
-    border-radius: 2px;
-    float: right;
-    font-weight: normal;
+    .taskAdd:hover {
+        background: #27b43a;
+    }
 
 
-    left:500px;
-    vertical-align: middle;
-    -webkit-transition: all 0.3s;
-    transition: all 0.3s;
-}
+    .taskAdd .icon {
+        position: absolute;
+        top: 30%;
+        left: 10px;
+        font-size: 20px;
+    }
 
-.btn-danger:hover{
-    background: #2980b9;
-}
+    .btn-danger{
 
+        font-size: 10px;
+        vertical-align: middle;
 
-button {
-    font-family: 'Open Sans', sans-serif;
-    background: transparent;
-    border-radius: 2px;
-    border: none;
-    outline: none;
-    height: 50px;
-    font-size: 14px;
-    color: #fff;
-    cursor: pointer;
-    text-transform: uppercase;
-    position: relative;
-    -webkit-transition: all 0.3s;
-    transition: all 0.3s;
-    padding-left: 30px;
-    padding-right: 15px;
-}
+        color: rgb(189, 45, 45);
+        padding: 5px;
+        width: 75px;
+        text-align: center;
+        border-radius: 2px;
+        float: right;
+        font-weight: normal;
 
 
-.taskList .taskDate {
-    color: #1ca0a7;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    display: block;
-    margin-left: 41px;
-}
-.fa-calendar {
-    margin-right: 10px;
-    font-size: 16px;
-}
-
-[class*='category-'] {
-    display: inline-block;
-    font-size: 10px;
-    background: #444;
-    vertical-align: middle;
-    color: #fff;
-    padding: 10px;
-    width: 75px;
-    text-align: center;
-    border-radius: 2px;
-    float: right;
-    font-weight: normal;
-    text-transform: uppercase;
-    margin-right: 50px;
-}
-
-.category- {
-    background: transparent;
-}
-.category-Personal {
-    background: #2980b9;
-}
-.category-Work {
-    background: #8e44ad;
-}
-.category-School {
-    background: #f39c12;
-}
-.category-Cleaning {
-    background: #16a085;
-}
-.category-General {
-    background: #d35400;
-}
+        left:500px;
+        vertical-align: middle;
+        -webkit-transition: all 0.3s;
+        transition: all 0.3s;
+    }
 
 
-h1 {
-    font-family: 'Rokkitt', sans-serif;
-    color: #666;
-    text-align: center;
-    font-weight: 400;
-    margin: 0;
-}
-.tagline {
-    margin-top: -10px;
-    text-align: center;
-    padding: 5px 20px;
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    color: #777;
-}
 
 
-.center-column label {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 20px;
-    font-weight: 600;
+    button {
+        font-family: 'Open Sans', sans-serif;
+        background: transparent;
+        border-radius: 2px;
+        border: none;
+        outline: none;
+        height: 50px;
+        font-size: 14px;
+        color: #fff;
+        cursor: pointer;
+        text-transform: uppercase;
+        position: relative;
+        -webkit-transition: all 0.3s;
+        transition: all 0.3s;
+        padding-left: 30px;
+        padding-right: 15px;
+    }
 
-    color: rgb(8, 8, 8);
 
-}
+    .taskList .taskDate {
+        color: #1ca0a7;
+        font-size: 12px;
+        font-weight: bold;
+        text-transform: uppercase;
+        display: block;
+        margin-left: 41px;
+    }
 
-.taskList a{
-    color: black
-}
+    .fa-calendar {
+        margin-right: 10px;
+        font-size: 16px;
+    }
+
+    [class*='category-'] {
+        display: inline-block;
+        font-size: 10px;
+        background: #444;
+        vertical-align: middle;
+        color: #fff;
+        padding: 10px;
+        width: 75px;
+        text-align: center;
+        border-radius: 2px;
+        float: right;
+        font-weight: normal;
+        text-transform: uppercase;
+        margin-right: 50px;
+    }
+
+    .category- {
+        background: transparent;
+    }
+    .category-Personal {
+        background: #2980b9;
+    }
+    .category-Work {
+        background: #8e44ad;
+    }
+    .category-School {
+        background: #f39c12;
+    }
+    .category-Cleaning {
+        background: #16a085;
+    }
+    .category-General {
+        background: #d35400;
+    }
+
+
+    h1 {
+        font-family: 'Rokkitt', sans-serif;
+        color: black;
+        text-align: center;
+        font-weight: 400;
+        font-size: 50px;
+        margin: 0;
+    }
+
+    .tagline {
+        margin-top: -10px;
+        text-align: center;
+        padding: 5px 20px;
+        font-size: 15px;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: #777;
+    }
+
+
+    .center-column label {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 20px;
+        font-weight: 600;
+
+        color: rgb(8, 8, 8);
+    }
+
+    .center-column input{
+
+        width: 275px;
+		padding: 10px 20px;
+
+        margin-bottom: 10px;
+		box-sizing: border-box;
+        float: right;
+    }
+
+
+    .taskList a{
+        color: black
+    }
+
+
+    .category- option {
+        margin: 40px;
+        background: rgba(0, 0, 0, 0.3);
+        color: #fff;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+    }
+
+    select option[value="School"] {
+        background: #f39c12;
+    }
+
+    select option[value="General"] {
+        background: #d35400;
+    }
+
+    select option[value="Work"] {
+        background: #8e44ad;
+    }
+
+    select option[value="Personal"] {
+        background: #2980b9;
+    }
+
+    select option[value="Cleaning"] {
+        background: #16a085;
+    }
+
+    .priority- option{
+        margin: 40px;
+        background: rgba(0, 0, 0, 0.3);
+        color: #fff;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+    }
+
+
+    select option[value="1"] {
+        background:rgb(206, 197, 70);
+    }
+
+    select option[value="2"] {
+        background: yellow;
+    }
+
+    select option[value="3"] {
+        background:orange;
+    }
+
+    select option[value="4"] {
+        background:rgb(233, 72, 72);
+    }
+
+    select option[value="5"] {
+        background: rgb(206, 13, 13);
+    }
+
+
 
 </style>
-
- <!-- <script>
-            window.addEventListener('load', function(){
-                let today = new Date().toISOString().substr(0, 16);
-                document.querySelector("#today").value = today;})
-
-         </script>
-
-        <font color="blue">
-            Today's date is :
-            Set to today (JavaScript):
-                <input id="today" type="datetime-local" value="">
-        </font>-->
 
 
     {% load static %}
@@ -248,21 +296,21 @@ h1 {
 
 
 <div class="center-column">
-    <h1>ToDo App</h1>
-    <p class="tagline">a Django todo app</p>
+    <h1 >ToDo App</h1>
+    <p class="tagline">in Python Django</p>
 
     <form method="post">
         {% csrf_token %}
 
         <div class="item-row">
-            <label for="title">Task Title</label>
-            <input type="text" id="title" class="taskTitle" placeholder="What do you need to do?" name="title" required>
+            <label for="title">Title</label>
+            <input type="text" id="title" class="taskTitle" placeholder="What is the name of new Task?" name="title" required>
 
         </div>
 
         <div class="item-row">
-            <label for="title">Task Description</label>
-            <input type="text" id="content" class="taskContent" placeholder="What is it?" name="content" required>
+            <label for="title">Description</label>
+            <input type="text" id="content" class="taskContent" placeholder="What is it about?" name="content" required>
 
         </div>
 
@@ -270,7 +318,7 @@ h1 {
         <div class="item-row">
             <label for="category">Priority</label>
             <i class="fa fa-caret-down selectArrow"></i>
-            <select id="priority" class="taskPriority" name="priority" required>
+            <select id="priority" class="priority" name="priority" required>
             <option class="disabled" value="">Choose a priority</option>
             {% for i in n %}
                 <option class="" value="{{i}}">{{ i }}</option>
@@ -290,7 +338,7 @@ h1 {
             <label for="category">Category</label>
             <i class="fa fa-caret-down selectArrow"></i>
 
-            <select id="category"  name="category" class="mdb-select md-form" required>
+            <select id="category"  name="category" class="category" required>
 
             <option class="disabled" value="">Choose a category</option>
             {% for category in categories %}
