@@ -66,7 +66,7 @@
     }
 
     .taskAdd {
-        background: rgb(30, 32, 29);
+        background: rgb(53, 138, 10);
         padding-left: 31px;
 
         justify-content: center;
@@ -83,7 +83,7 @@
     }
 
     .taskAdd:hover {
-        background: #27b43a;
+        background: #1c271d;
     }
 
 
@@ -92,6 +92,94 @@
         top: 30%;
         left: 10px;
         font-size: 20px;
+    }
+
+
+    .sort_due_date {
+        background: rgb(186, 197, 27);
+        padding-left: 10px;
+
+        justify-content: center;
+        align-items: center;
+        border: 3px solid green;
+
+        height:50px;
+        width:150px;
+        margin-top: -20px;
+        margin: -0px -50px;
+
+        top:40%;
+        right: 0%;
+        left: 9%;
+    }
+
+    .sort_due_date .icon {
+        position: absolute;
+        left:10px;
+        justify-content: center;
+    }
+
+    .sort_due_date:hover{
+        background: #1c271d;
+    }
+
+
+
+    .sort_priority {
+        background: rgb(226, 127, 14);
+        padding-left: 31px;
+
+        justify-content: center;
+        align-items: center;
+        border: 3px solid green;
+
+        height:50px;
+        width:150px;
+        margin-top: -20px;
+        margin: -0px -50px;
+
+        top:40%;
+        left:40%;
+    }
+
+    .sort_priority:hover{
+        background: #1c271d;
+    }
+
+    .sort_priority .icon {
+        position: absolute;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .delete_completed {
+        background: rgb(209, 46, 17);
+        padding-left: 31px;
+
+        justify-content: center;
+        align-items: center;
+        border: 3px solid green;
+
+        height:50px;
+        width:150px;
+        margin-top: -20px;
+        margin: -0px -50px;
+
+        top:40%;
+        left: 70%;
+    }
+
+    .delete_completed .icon {
+        position: absolute;
+        align-items: center;
+        top: 30%;
+        right: 15px;
+        justify-content: center;
+    }
+
+    .delete_completed:hover{
+        background: #1c271d;
     }
 
     .btn-danger{
@@ -285,10 +373,19 @@
         background: rgb(206, 13, 13);
     }
 
+    .task_due_date{
+        text-transform: uppercase;
+
+    }
 
 
 </style>
 
+
+<title>
+
+    ToDoApp
+</title>
 
     {% load static %}
 
@@ -296,8 +393,9 @@
 
 
 <div class="center-column">
+
     <h1 >ToDo App</h1>
-    <p class="tagline">in Python Django</p>
+    <p class="tagline" >in Python Django</p>
 
     <form method="post">
         {% csrf_token %}
@@ -348,13 +446,24 @@
 
         </div>
 
-        <button class="taskAdd" name="taskAdd" type="submit"><i class="fa fa-plus icon"></i>Add task</button>
+        <button class="taskAdd" name="taskAdd" type="submit"><i class="fa fa-plus icon fa-2x"></i>Add task</button>
 
-    </form>
+
 </div>
+
 
 <div class="todo-list">
     <div>
+        <div>
+
+            <button class="sort_due_date" name="due_date" type="submit"><i class="fa fa-clock-o fa-2x"></i></button>
+            <button class="sort_priority" name="priority" type="submit"><i class="fa fa-exclamation fa-2x"></i></button>
+            <button class="delete_completed" name="delete_completed" type="submit"><i class="fa fa-check-square-o fa-2x"></i> <i class="fa fa-trash-o icon fa-2x"></i></button>
+
+        </div>
+        <br>
+        <br>
+ </form>
 
     <ol class="taskList">
         {% for task in tasks %}
@@ -382,4 +491,5 @@
             </li>
         {% endfor %}
     </ol>
+</div>
 </div>

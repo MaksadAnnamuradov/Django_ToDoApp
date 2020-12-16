@@ -6,7 +6,7 @@ from .models import Task, Category
 
 def index(request):
     # return HttpResponse("Hello World!!")
-    tasks = Task.objects.all().order_by("due_date", "priority")
+    tasks = Task.objects.all()
 
     categories = Category.objects.all() #getting all categories with object manager
 
@@ -23,6 +23,15 @@ def index(request):
             #new_Task = Task(**dict(request.POST, category= Category.objects.get(name=new_category)))
 
             new_Task.save()
+            return redirect("/") #reloading the page
+        if "due_date" in request.Post:
+            tasks = Task.objects.all().order_by("due_date")
+            return redirect("/") #reloading the page
+        if "priority" in request.Post:
+            tasks = Task.objects.all().order_by("priority")
+            return redirect("/") #reloading the page
+        if "delete_completed" in request.Post:
+            tasks = Task.objects.all().order_by("due_date")
             return redirect("/") #reloading the page
 
     return render(request, "index.html", {"tasks": tasks, "categories":categories, 'n' : range(1, 6, 1)})

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Update Task - 
+Update Task -
 {% endblock title %}
 
 {% block content %}
@@ -15,13 +15,6 @@ Update Task -
 
     <form method="post">
         {% csrf_token %}
-
-        <!-- <script>
-            window.addEventListener('load', function(){
-            var a = $("#today").val();
-            document.querySelector("#today").value = a;
-        })
-        </script> -->
 
         <table>
             {{task_edit_form.as_table}}
