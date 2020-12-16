@@ -6,7 +6,7 @@ from .models import Task, Category
 
 def index(request):
     # return HttpResponse("Hello World!!")
-    tasks = Task.objects.all()
+    tasks = Task.objects.all().order_by("completed", "-created")
 
     categories = Category.objects.all() #getting all categories with object manager
 
@@ -67,11 +67,11 @@ def sort_task(request):
     categories = Category.objects.all() #getting all categories with object manager
     if request.method == "POST":
         if "due_date" in request.POST:
-            tasks = Task.objects.all().order_by("due_date")
+            tasks = Task.objects.all().order_by("completed", "due_date")
             redirect("index")
 
         if "priority" in request.POST:
-            tasks = Task.objects.all().order_by("-priority")
+            tasks = Task.objects.all().order_by("completed", "-priority")
             redirect("index")
 
         if "delete_completed" in request.POST:
@@ -79,7 +79,7 @@ def sort_task(request):
                 if task.completed == True:
                     delete_task = Task.objects.get(id = task.id)
                     delete_task.delete()
-            tasks = Task.objects.all().order_by("-created")
+            tasks = Task.objects.all().order_by("completed","-created")
             redirect("index")
 
     return render(request, "index.html", {"tasks": tasks, "categories":categories, 'n' : range(1, 6, 1)})
