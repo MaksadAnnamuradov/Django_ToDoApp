@@ -12,7 +12,7 @@ class Category(models.Model): # The Category table name that inherits models.Mod
         verbose_name_plural = ("Categories")
 
     def __str__(self):
-        return self.name #name to be shown when called
+        return self.name   #name to be shown when called
 
 
 
@@ -23,7 +23,7 @@ class Task(models.Model):
     content = models.TextField(blank=True)
     created = models.DateTimeField(default=timezone.now())
     priority = (models.IntegerField(default= 1))
-    #due_date = models.DateField(default=timezone.now().strftime("%Y-%m-%d"))
+
     due_date = models.DateTimeField(null=False, blank=False)
     category = models.ForeignKey(Category, default="general", on_delete= models.CASCADE) # a foreignkey
 

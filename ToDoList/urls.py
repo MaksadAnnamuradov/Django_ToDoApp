@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 
+
+#urls used in the project
 urlpatterns = [
     path('',views.index,name="index"),
     path("sort_task", views.sort_task, name="sort_task"),
