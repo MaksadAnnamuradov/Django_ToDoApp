@@ -27,8 +27,8 @@ SECRET_KEY = '8qh7rd0xh05#=m1_p2+bsropq3@2d-6n=*^a7@h8+m_)bkvl5m'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['djtodoapp20.herokuapp.com']
-
+# ALLOWED_HOSTS = ['djtodoapp20.herokuapp.com']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -131,9 +131,9 @@ STATIC_ROOT = path.os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 
 # Extra lookup directories for collectstatic to find static files
-STATICFILES_DIRS = (
+STATICFILES_DIRS = [
     path.os.path.join(PROJECT_ROOT, 'static'),
-)
+]
 
 #  Add configuration for static files storage using whitenoise
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
