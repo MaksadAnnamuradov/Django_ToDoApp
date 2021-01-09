@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import dj_database_url
 from pathlib import Path
 from os import path
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,8 +28,8 @@ SECRET_KEY = '8qh7rd0xh05#=m1_p2+bsropq3@2d-6n=*^a7@h8+m_)bkvl5m'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = ['djtodoapp20.herokuapp.com']
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['djtodoapp20.herokuapp.com']
+# ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -137,3 +138,6 @@ STATICFILES_DIRS = [
 
 #  Add configuration for static files storage using whitenoise
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Activate Django-Heroku
+django_heroku.settings(locals())
