@@ -4,3 +4,5 @@ from .models import Task, Category
 
 admin.site.register(Task)
 admin.site.register(Category)
+
+# maksad  password: 0000@Max
